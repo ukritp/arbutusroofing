@@ -1,0 +1,296 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$nav-blue-color:#337ab7;
+$mobile-small: 240px;
+$mobile-large: 320px;
+$tablet-small: 480px;
+$tablet-large: 768px;
+$screen-small: 1024px;
+$screen-large: 1280px;
+// Media Query Mixin
+@mixin desktop {
+  @media (min-width: #{$screen-small}) {
+    @content;
+  }
+}
+@mixin desktop-tablet {
+  @media (min-width: #{$tablet-large}) and (max-width: #{$screen-small - 1px}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: #{$tablet-large}) {
+    @content;
+  }
+}
+@mixin phone {
+  @media (max-width: #{$tablet-small - 1px}) {
+    @content;
+  }
+}
+@mixin custom-media($min-width, $max-width) {
+  @media (min-width: #{$min-width}) and (max-width: #{$max-width}) {
+    @content;
+  }
+}
+@mixin custom-min($min-width) {
+  @media (min-width: #{$min-width}) {
+    @content;
+  }
+}
+@mixin custom-max($max-width) {
+  @media (max-width: #{$max-width}) {
+    @content;
+  }
+}
+// Border Mixin
+@mixin border ($width: 1px,$style: solid, $color :#dddddd,  $sides...){
+    @if ($sides == "") {
+        border: $width $style $color;
+    } @else {
+        @each $side in $sides {
+           @if ($side == 'top' or
+                $side == 'right' or
+                $side == 'bottom' or
+                $side == 'left') {
+                border-#{$side}: $width $style $color;
+            }
+        }
+    }
+}
+// remove spaces
+.no-gutter{
+    padding: 0;
+    margin: 0;
+}
+// add asterisk on the require field
+.form-group.required .control-label:after {
+   content:"*";
+   color:red;
+}
+// make button transition slower
+.btn:hover{
+     transition: all 0.7s;
+}
+// make button transition slower
+a:hover{
+     transition: all 0.4s;
+}
+.form-group-ajax{
+  ul.parsley-errors-list{
+    display:none;
+  }
+  .company-dropdown{
+    cursor: pointer;
+  }
+}
+.btn-margin-right{
+  margin-right:10px;
+}
+// add some color to tabel on top of bootstrap
+.table-hover-blue tbody tr:hover td, .table-hover-blue tbody tr:hover th {
+  background-color: lighten($nav-blue-color, 47%);
+}
+.container{
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .main-row{
+    margin-top:10px;
+    flex: 1;
+    .side-bar{
+      @extend .no-gutter;
+      @include border(2px,solid,$nav-blue-color,right);
+      @include custom-media(0px,991px) {
+        @include border(0px,solid,transparent,right);
+      }
+    }
+    .main-content{
+    }
+  }
+  .footer-msg{
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+.navbar-left-stacked{
+  background-color: transparent;
+  border-color:transparent;
+  @include tablet {
+    @include border(1px,solid,#e7e7e7,bottom);
+  }
+  .nav-stacked-parent{
+    a{
+      font-size: 1.1em;
+    }
+    ul.nav-stacked li{
+      margin-left: 10px;
+      a{
+        font-size:1em;
+      }
+    }
+  }
+}
+.navbar-right {
+    float: right!important;
+    margin-right: -15px;
+}
+.panel-mobile{
+  .panel-heading{
+    font-weight: bold;
+    @include custom-media(0px,$tablet-large) {
+      background-color:transparent;
+    }
+  }
+  @include custom-media(1200px,$tablet-large) {
+    // @include border(0px,solid,transparent,'');
+    border-color:transparent;
+  }
+}
+.panel-body{
+  .p-description{
+    white-space: pre-line;
+  }
+}
+// table design on mobile ===========================================
+table.mobile-table {
+  .td-mobile{
+    text-align: center;
+  }
+  @include custom-media(0px,$tablet-large) {
+    border: 0;
+    thead {
+      display: none !important;
+    }
+    tr {
+      margin-bottom: 15px;
+      display: block;
+      border: 1px solid #ddd;
+      @include border(3px,solid,$nav-blue-color,top);
+    }
+    td, th {
+      display: block;
+      text-align: right;
+      font-size: 13px;
+      /*border-bottom: 1px dotted #ccc;*/
+    }
+    .td-mobile{
+        text-align: right !important;
+    }
+    tbody tr td.no-item{
+      text-align: center !important;
+    }
+    td:first-child, th:first-child {
+      background-color: #f5f5f5;
+    }
+    td:last-child,th:last-child {
+      border-bottom: 0;
+    }
+    td:before, th:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}
+// image slider =====================================================
+.carousel{
+  .carousel-inner{
+    // padding-bottom:30px;
+    // height: auto;
+    // overflow: hidden;
+    .carousel-caption{
+      // color: #333;
+      font-size: 14px;
+      // font-weight: bold;
+      // bottom: -60px;
+    }
+  }
+  .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        width: auto;
+        height: 350px;
+        margin: auto;
+        @include custom-media(0px,$tablet-large) {
+          height: auto;
+          // @extend .img-responsive;
+        }
+    }
+  .carousel-control.left, .carousel-control.right {
+    background: none;
+    border: none;
+  }
+}
+// Thumnail image ==============================================
+.thumb {
+  margin-bottom: 20px;
+  // max-height: 160px;
+  .thumbnail{
+    // cursor: -webkit-zoom-in;
+    // cursor: -moz-zoom-in;
+    cursor:pointer;
+  }
+  .thumb-link{
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+// http://stackoverflow.com/questions/24571062/gap-in-bootstrap-stacked-rows/24571644#24571644
+@mixin nth-child-mixin($num) {
+  &:nth-child(#{$num}n) {
+    @content
+  }
+}
+.image-thumbnail-div > .clear-div{
+  @include custom-max(767px) {
+    @include nth-child-mixin(4){
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+  @include custom-media(768px,1199px) {
+    @include nth-child-mixin(3){
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+  @include custom-min(1200px) {
+    @include nth-child-mixin(8){
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+// Link for PDF list =====================================
+.delete-thumbnail,.delete-pdf-link{
+  color:#DD6B55;
+  cursor:pointer;
+  &:hover{
+    color: darken(#DD6B55, 10%);
+  }
+}
+.edit-pdf-link{
+  color:#63B52C;
+  cursor:pointer;
+  &:hover{
+    color: darken(#63B52C, 10%);
+  }
+}
+// Sweetalert for image thumbnail =====================================
+.swal-wide{
+    width:600px !important;
+    @include custom-media(0px,$tablet-large) {
+      width: auto !important;
+      p{
+        font-size:10px;
+      }
+    }
+}
+

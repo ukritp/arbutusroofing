@@ -1,0 +1,53 @@
+█ [ /Users/castlecs/Sites/arbutusroofing ] gulp
+[09:28:31] Using gulpfile ~/Sites/arbutusroofing/gulpfile.js
+[09:28:31] Starting 'default'...
+[09:28:31] Starting 'sass'...
+
+Fetching Sass Source Files...
+   - resources/assets/sass/app.scss
+
+
+Saving To...
+   - public/css/style.css
+
+[09:28:32] Finished 'default' after 1.09 s
+[09:28:32] gulp-notify: [Laravel Elixir] Sass Compiled!
+[09:28:32] Finished 'sass' after 1.24 s
+
+█ [ /Users/castlecs/Sites/arbutusroofing ] php artisan route:list
++--------+----------+-------------------------+------+-----------------------------------------------------------------+------------+
+| Domain | Method   | URI                     | Name | Action                                                          | Middleware |
++--------+----------+-------------------------+------+-----------------------------------------------------------------+------------+
+|        | GET|HEAD | /                       |      | Closure                                                         | web        |
+|        | GET|HEAD | home                    |      | App\Http\Controllers\HomeController@index                       | web,auth   |
+|        | GET|HEAD | login                   |      | App\Http\Controllers\Auth\AuthController@showLoginForm          | web,guest  |
+|        | POST     | login                   |      | App\Http\Controllers\Auth\AuthController@login                  | web,guest  |
+|        | GET|HEAD | logout                  |      | App\Http\Controllers\Auth\AuthController@logout                 | web        |
+|        | POST     | password/email          |      | App\Http\Controllers\Auth\PasswordController@sendResetLinkEmail | web,guest  |
+|        | POST     | password/reset          |      | App\Http\Controllers\Auth\PasswordController@reset              | web,guest  |
+|        | GET|HEAD | password/reset/{token?} |      | App\Http\Controllers\Auth\PasswordController@showResetForm      | web,guest  |
+|        | GET|HEAD | register                |      | App\Http\Controllers\Auth\AuthController@showRegistrationForm   | web,guest  |
+|        | POST     | register                |      | App\Http\Controllers\Auth\AuthController@register               | web,guest  |
++--------+----------+-------------------------+------+-----------------------------------------------------------------+------------+
+
+█ [ /Users/castlecs/Sites/arbutusroofing ] ls
+app
+artisan
+bootstrap
+composer.json
+composer.lock
+config
+database
+gulpfile.js
+node_modules
+package.json
+phpunit.xml
+public
+readme.md
+resources
+server.php
+storage
+terminal.glue
+tests
+vendor
+
