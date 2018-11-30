@@ -45,8 +45,8 @@ class UsersTableSeeder extends Seeder
         $admin = new User;
         $admin->first_name = 'Ukrit';
         $admin->last_name = 'Pornpatanapaisarnkul';
-        $admin->email = 'upornpatanapaisarnkul@castlecs.com';
-        $admin->password = 'castlecs';
+        $admin->email = 'ukrit.p@widerfunnel.com';
+        $admin->password = '1234';
         $admin->save();
         $admin->roles()->attach($role_admin);
 
